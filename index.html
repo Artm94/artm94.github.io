@@ -63,7 +63,7 @@
  // Note: The call will only work if you accept the permission request
  var frase = document.getElementById('lfrase').value;
  var autor = document.getElementById('lautor').value;
- var post = "Frase:" + frase + "\n" + "Autor: " + autor;
+ var post = "Frase: " + frase + "\n" + "Autor: " + autor;
  FB.api('/me/feed', 'post', {message: post});
 }, {scope: 'publish_actions'});
  }
