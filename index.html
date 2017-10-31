@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Facebook Posting JavaScript Example</title>
+	<meta charset="UTF-8">
+	<link rel="icon"
+	type="image/ico"
+	href="./favicon.ico">
+	<style>
+	input[type=text], select {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+	input[type=submit] {
+		width: 100%;
+		background-color: #4CAF50;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	input[type=submit]:hover {
+		background-color: #45a049;
+	}
+	div {
+		border-radius: 5px;
+		background-color: #f2f2f2;
+		padding: 20px;
+	}
+</style>
+</head>
+<body>
+	<script>
+		window.fbAsyncInit = function () {
+			FB.init({
+				appId: 'xxxxxxxxxxxxxxxxxxxx',
+				xfbml: true,
+				version: 'v2.5'
+			});
+		};
+		(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {
+				return;
+			}
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<script>
+ // Only works after `FB.init` is called
+ function myFacebookLogin() {
+ 	FB.login(function () {
+ // Note: The call will only work if you accept the permission request
+ var frase = document.getElementById('lfrase').value;
+ var autor = document.getElementById('lautor').value;
+ var post = "Frase:" + frase + "\n" + "Autor: " + autor;
+ FB.api('/me/feed', 'post', {message: post});
+}, {scope: 'publish_actions'});
+ }
+</script>
+<h3>Frases c&eacute;lebres en mi muro de Facebook</h3>
+<div>
+	<label for="lfrase">Frase</label>
+	<input type="text" id="lfrase" name="frase">
+	<label for="lautor">Autor</label>
+	<input type="text" id="lautor" name="autor">
+	<button onclick="myFacebookLogin()">Publicar in Facebook</button>
+</div>
+</body>
+</html>
